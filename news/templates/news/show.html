@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "news/layout.html" %}
+
+{% block container %}
+
 <h2>{{ new.title}}</h2>
-<p>{{new.created |date:"Y-m-m" }}</p>
+
 <p>{{new.text}}</p>
-<a href="/news/" target="_blank">news page</a>
-<a href="/news/create/" target="_blank">create news</a>
-</body>
-</html>
+<p>{{new.created | date:"Y-m-d H:i:s"}}</p>
+<!--<a href="/news/" target="_blank">news page</a>-->
+<!--<a href="/news/create/" target="_blank">create news</a>-->
+{% endblock %}

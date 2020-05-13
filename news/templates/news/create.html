@@ -1,0 +1,16 @@
+
+{% extends "news/layout.html" %}
+{% block container %}
+
+<form action="/news/create/" method="post">
+{% csrf_token %}
+    <label for="title">title</label>
+    <input type="text" name="title" id="title">
+    <label for="text">text</label>
+    <input id="text" type="text" name="text">
+    <input type="submit" value="submit">
+</form>
+
+{% endblock %}
+
+

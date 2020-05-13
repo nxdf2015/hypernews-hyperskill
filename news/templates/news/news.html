@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
+{% extends "news/layout.html" %}
+
+{% block container %}
 <h2>Hyper news</h2>
 
 
@@ -19,8 +16,6 @@
    </ul>
 
     {% endfor %}
+{% endblock %}
 
-<a href="/news/create/" target="_blank">create news</a>
 
-</body>
-</html>
