@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>{{ new.title}}</h2>
-<p>{{new.created}}</p>
+<p>{{new.created |date:"Y-m-m" }}</p>
 <p>{{new.text}}</p>
 <a href="/news/" target="_blank">news page</a>
 <a href="/news/create/" target="_blank">create news</a>
