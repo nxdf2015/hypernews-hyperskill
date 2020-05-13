@@ -136,4 +136,4 @@ class News(View):
         if not new:
             return redirect("/news")
         else:
-            return render(request, "news/show.html", context={"new": new, "id": id})
+            return render(request, "news/show.html", context={"new": new})
