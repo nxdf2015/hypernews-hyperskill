@@ -21,6 +21,5 @@ urlpatterns = [
     path("news/",main),
     path("news/create/",CreateNew.as_view()),
     path("news/<int:id>/",News.as_view()),
-
-    path("", home)
+    path("",home)
 ]

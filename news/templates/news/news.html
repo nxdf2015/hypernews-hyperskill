@@ -3,8 +3,12 @@
 
 {% block container %}
 <h2>Hyper news</h2>
-
-
+<h3>search news</h3>
+<form action="/news/" method="get">
+    <label for="q">q</label>
+    <input type="text" id="q" name="q">
+    <input type="submit" value="submit">
+</form>
 
    {% for d,group in news %}
     <h4> {{d  | date:"Y-m-d" }}</h4>
