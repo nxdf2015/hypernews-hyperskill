@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Hyper news</h2>
+
+
+
+   {% for d,group in news %}
+    <h4> {{d  | date:"Y-m-d" }}</h4>
+
+   <ul>
+       {% for new in group %}
+        <li><a href="/news/{{new.link}}/" target="_blank" >{{new.title}}</a></li>
+       {% endfor %}
+   </ul>
+
+    {% endfor %}
+
+<a href="/news/create/" target="_blank">create news</a>
+
+</body>
+</html>

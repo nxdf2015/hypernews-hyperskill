@@ -5,8 +5,20 @@ from django.shortcuts import render,redirect
 from django.conf import settings
 import json
 
-
+from operator import attrgetter
+from itertools import groupby
+from datetime import datetime
 path_data=settings.NEWS_JSON_PATH
+
+def get_date(d):
+    """
+    @arg  date_string   iso format
+    return date object
+    """
+    return datetime.fromisoformat(d).date()
+
+def get_datetime(d):
+    return datetime.fromisoformat(d)
 
 class Data:
     def __init__(self,path=path_data):
@@ -25,16 +37,26 @@ class Data:
         if new :
             return new[0]
 
+    def get_all(self):
+        if not self.data:
+            self.load_data()
+        keyfunc=lambda item : get_date(item["created"])
+        new_sorted=sorted(self.data,key=keyfunc,reverse=True)
+
+        return [(d,list(sorted(items,key=lambda item : get_datetime(item["created"]),reverse=True))  )for d,items in groupby(new_sorted, key=keyfunc)]
+
+
 
 data=Data()
 
 
 
 def home(request):
-    return HttpResponse("Coming soon")
+    return render(request,"news/index.html")
 
 def main(request):
-    return render(request,"news/main.html")
+    news=data.get_all()
+    return render(request,"news/news.html",context={"news":news})
 
 class News(View):
 
@@ -44,4 +66,4 @@ class News(View):
         if not new :
             return redirect("/news")
         else:
-            return render(request,"news/show.html",context={"new":new,"id":id})
+            return render(request,"news/show.html",context={ "new":new,"id":id})
